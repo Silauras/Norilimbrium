@@ -5,31 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5822005e-38cf-4c10-a4d4-34caac9139ad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/ArmorComponent.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/ArmorComponent.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/HealthComponent.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/HealthComponent.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Item/Armor.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Item/Armor/ArmorItemData.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Item/Armor/ArmorItemData.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Item/Weapon.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Norilimbrium/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Norilimbrium/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assembly-CSharp.csproj.DotSettings" beforeDir="false" afterPath="$PROJECT_DIR$/Assembly-CSharp.csproj.DotSettings" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/ItemData.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Item.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/ItemData/ItemData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Item/ItemData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/ItemData/ItemData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Item/ItemData.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/ItemData/MeleeDamageType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Item/Weapon/DamageType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/ItemData/MeleeDamageType.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Item/Weapon/DamageType.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/ItemData/MeleeWeaponItemData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Item/Weapon/MeleeWeaponItemData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/ItemData/MeleeWeaponItemData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Item/Weapon/MeleeWeaponItemData.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/ItemData/Projectile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Item/Weapon/ProjectileItemData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/ItemData/Projectile.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Item/Weapon/ProjectileItemData.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/ItemData/RangeWeaponItemData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Item/Weapon/RangeWeaponItemData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/ItemData/RangeWeaponItemData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Item/Weapon/RangeWeaponItemData.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/ItemData/Rarity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Item/Rarity.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/ItemData/Rarity.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Item/Rarity.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/ItemData/WeaponItemData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Item/Weapon/WeaponItemData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/ItemData/WeaponItemData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Item/Weapon/WeaponItemData.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Data/Items/ArmorItemData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Data/Items/ArmorItemData.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Data/Items/ZweiHander.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Data/Items/ZweiHander.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level/Scenes/PrototypeScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scenes/PrototypeScene.unity" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,42 +29,48 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c0cc23296fbe420fbc9c08cf3bc7ba0d1fe00/eb/018cccbc/CharacterController.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3ea01e77be99618395f448b16bd7cc2bd4248bd9e5d8474964b2d97f39c5d74/System.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d44b17e136d09081da1e8fd0e8c83fde60e11818b9f2442d7ed8cb733fae895e/System.Collections.Generic.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://D:/Program Files/UnityEditor/2022.3.41f1/Editor/Data/CGIncludes/UnityCustomRenderTexture.cginc" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://D:/Program Files/UnityEditor/2022.3.41f1/Editor/Data/CGIncludes/UnityShaderVariables.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Inventory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.mathematics@1.2.6/Unity.Mathematics/math.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@14.0.11/Editor/Importers/ShaderGraphImporter.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Image.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../sandbox/RPG/RPG Project/Assets/Scripts/Dialogue/Editor/DialogueEditor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../sandbox/RPG/RPG Project/Assets/Scripts/UI/Shops/ShopUI.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2kbl3qcBh2hSC5S5SIRU6rQFNTr" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "ml.llm.LLMConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\Silauras\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\Silauras\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\Silauras\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\Silauras\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\Silauras\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\Silauras\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="D:\Program Files\UnityEditor\2022.3.41f1\Editor\Unity.exe" />
@@ -132,7 +117,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1723559961923</updated>
-      <workItem from="1723559968012" duration="14031000" />
+      <workItem from="1723559968012" duration="30357000" />
+      <workItem from="1723753585642" duration="337000" />
+      <workItem from="1724007023245" duration="1308000" />
     </task>
     <servers />
   </component>
