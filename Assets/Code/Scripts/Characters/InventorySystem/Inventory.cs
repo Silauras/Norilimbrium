@@ -6,6 +6,7 @@ public class Inventory
     public int width;
     public int height;
     private Item[,] grid;
+    // GridInventory
 
     public Inventory(int width, int height)
     {

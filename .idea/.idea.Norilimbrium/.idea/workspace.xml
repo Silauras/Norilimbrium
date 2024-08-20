@@ -5,10 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5822005e-38cf-4c10-a4d4-34caac9139ad" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Assets/AssetPacks.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/CharacterMenuState.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/CharacterMenuState.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/GameState.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/GameState.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/GameStateManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/GameStateManager.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InputManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InputManager.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/TextMesh Pro.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Norilimbrium/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Norilimbrium/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Data/Items/ArmorItemData.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Data/Items/ArmorItemData.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Art/Data/Items/ZweiHander.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Data/Items/ZweiHander.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Art/Shaders/FlatFireBackground.shadergraph" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Art/Shaders/FlatFireBackground.shadergraph" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Inventory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Inventory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Code/Scripts/PlayerCharacterController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Code/Scripts/PlayerCharacterController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Level/Scenes/PrototypeScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level/Scenes/PrototypeScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CREDITS" beforeDir="false" afterPath="$PROJECT_DIR$/CREDITS" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,24 +33,32 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/fd/4bd933b7/02000252pdb11.il" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4654961cc46048b3949bc81a2ac34fb97c00/28/35ea3e27/Input.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5a41d6b7189842eca409fd0b1c3e3dcf17bf78/76/d1cb475f/Action.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9ae153a4144543aca4f16814b7ce3264175e00/1c/43c3ecde/HeaderAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9ae153a4144543aca4f16814b7ce3264175e00/4e/0bf48afd/CreateAssetMenuAttribute.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9ae153a4144543aca4f16814b7ce3264175e00/5f/828670b8/Time.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9ae153a4144543aca4f16814b7ce3264175e00/a9/819f374e/SerializeField.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9ae153a4144543aca4f16814b7ce3264175e00/c8/54893b6d/UnityAction`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9ae153a4144543aca4f16814b7ce3264175e00/d0/d0e89714/RequireComponent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/9ae153a4144543aca4f16814b7ce3264175e00/ed/a827f0fc/Vector2Int.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/c0cc23296fbe420fbc9c08cf3bc7ba0d1fe00/eb/018cccbc/CharacterController.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/13ae6aa3c458d6b636864d5bcb4ef1f289091462a1f27a5b15c27ddaff8f848/System.Timers.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/3ea01e77be99618395f448b16bd7cc2bd4248bd9e5d8474964b2d97f39c5d74/System.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d44b17e136d09081da1e8fd0e8c83fde60e11818b9f2442d7ed8cb733fae895e/System.Collections.Generic.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://D:/Program Files/UnityEditor/2022.3.41f1/Editor/Data/CGIncludes/UnityCustomRenderTexture.cginc" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://D:/Program Files/UnityEditor/2022.3.41f1/Editor/Data/CGIncludes/UnityShaderVariables.cginc" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/GameStateManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Code/Scripts/InventorySystem/Inventory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.mathematics@1.2.6/Unity.Mathematics/math.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.shadergraph@14.0.11/Editor/Importers/ShaderGraphImporter.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Image.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.visualscripting@1.9.4/Runtime/VisualScripting.Core/Unity/Singleton.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../sandbox/RPG/RPG Project/Assets/Scripts/Dialogue/Editor/DialogueEditor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../sandbox/RPG/RPG Project/Assets/Scripts/UI/Shops/ShopUI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../sandbox/gridventory/Assets/Sample/TestGridventory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../sandbox/gridventory/Assets/Sample/TestGridventoryItem.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -119,7 +141,7 @@
       <updated>1723559961923</updated>
       <workItem from="1723559968012" duration="30357000" />
       <workItem from="1723753585642" duration="337000" />
-      <workItem from="1724007023245" duration="1308000" />
+      <workItem from="1724007023245" duration="8483000" />
     </task>
     <servers />
   </component>
