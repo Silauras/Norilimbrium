@@ -1,18 +1,21 @@
 
-[System.Serializable]
-public class Item
+namespace Code.Scripts.Characters.InventorySystem
 {
-    public ItemData data;
-    public int currentStackSize;
-
-    public Item(ItemData data)
+    [System.Serializable]
+    public class Item
     {
-        this.data = data;
-        this.currentStackSize = 1;
-    }
+        public ItemData data;
+        public int currentStackSize;
 
-    public Item Clone()
-    {
-        return new Item(data) { currentStackSize = this.currentStackSize };
+        public Item(ItemData data)
+        {
+            this.data = data;
+            this.currentStackSize = 1;
+        }
+
+        public Item Clone()
+        {
+            return new Item(data) { currentStackSize = this.currentStackSize };
+        }
     }
 }

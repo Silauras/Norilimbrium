@@ -22,10 +22,6 @@ namespace Code.Scripts
         private void Start()
         {
             characterController = GetComponent<CharacterController>();
-
-            // Lock cursor
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
         }
 
         private void Update()
