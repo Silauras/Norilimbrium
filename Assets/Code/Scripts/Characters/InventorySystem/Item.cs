@@ -1,4 +1,6 @@
 
+using UnityEngine;
+
 namespace Code.Scripts.Characters.InventorySystem
 {
     [System.Serializable]
@@ -6,7 +8,7 @@ namespace Code.Scripts.Characters.InventorySystem
     {
         public ItemData data;
         public int currentStackSize;
-
+        
         public Item(ItemData data)
         {
             this.data = data;

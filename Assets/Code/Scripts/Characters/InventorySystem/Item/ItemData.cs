@@ -14,4 +14,5 @@ public class ItemData : ScriptableObject
     public int maxStackSize;
     public float weight;
     public Rarity rarity;
+    public Mesh mesh;
 }
