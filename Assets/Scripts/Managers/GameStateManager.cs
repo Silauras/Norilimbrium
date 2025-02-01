@@ -53,12 +53,12 @@ namespace Code.Scripts.Managers
 
         private void Start()
         {
-            UpdateGUI();
+            // UpdateGUI();
             UpdateCursorState();
             _backGroundMaterial = backgroundGUI.GetComponent<RawImage>().material;
         }
 
-        private void Update()
+        /*private void Update()
         {
             if (InputSystem.actions.FindAction("Inventory").WasPerformedThisFrame())
             {
@@ -75,14 +75,17 @@ namespace Code.Scripts.Managers
                 UpdateCursorState();
             }
 
-
-            _backGroundMaterial.SetFloat(UnscaledTime, UnityEngine.Time.unscaledTime);
+            if (_backGroundMaterial)
+            {
+                _backGroundMaterial.SetFloat(UnscaledTime, UnityEngine.Time.unscaledTime);   
+            }
         }
 
         private void FixedUpdate()
         {
             CountTime();
         }
+        */
 
         private void CountTime()
         {
@@ -98,7 +101,7 @@ namespace Code.Scripts.Managers
             if (currentGameState == GameState.Game)
             {
                 // Lock cursor
-                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.lockState = CursorLockMode.Confined;
                 Cursor.visible = false;
             }
             else
