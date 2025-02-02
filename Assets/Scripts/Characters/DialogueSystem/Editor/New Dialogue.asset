@@ -1,37 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8024082581738986635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0956560e3ce24e9aa77190eeb57786a5, type: 3}
-  m_Name: 269f5af5-f1ad-4a45-ad77-ac2032d03884
-  m_EditorClassIdentifier: 
-  isPlayerSpeaking: 0
-  portrait: {fileID: 0}
-  title: 
-  text: 
-  audioClip: {fileID: 0}
-  children: []
-  rect:
-    serializedVersion: 2
-    x: 905
-    y: 316
-    width: 250
-    height: 300
-  onEnterAction:
-    m_PersistentCalls:
-      m_Calls: []
-  onExitAction:
-    m_PersistentCalls:
-      m_Calls: []
-  condition:
-    and: []
 --- !u!114 &-3274900758297491081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,8 +23,40 @@ MonoBehaviour:
   - 8c736734-80ab-4f89-ab48-fec4851a875d
   rect:
     serializedVersion: 2
-    x: -11
-    y: 222
+    x: 0
+    y: 79
+    width: 340
+    height: 180
+  onEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
+  onExitAction:
+    m_PersistentCalls:
+      m_Calls: []
+  condition:
+    and: []
+--- !u!114 &-2634913906542648835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0956560e3ce24e9aa77190eeb57786a5, type: 3}
+  m_Name: 7f04b27c-ca86-41d5-9e47-fd8a82efe2d8
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  portrait: {fileID: 21300000, guid: f587e3a5650657b45b150dc2c1d874a5, type: 3}
+  title: "\u041A\u043E\u0445\u0435\u0439\u0440\u0456"
+  text: "\u041D\u0443 \u0449\u043E \u0436... \u0414\u043E \u0437\u0443\u0441\u0442\u0440\u0456\u0447\u0456!"
+  audioClip: {fileID: 8300000, guid: e4c4a82fd09cbcf44961a245d0b9ab4f, type: 3}
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1143
+    y: 83
     width: 340
     height: 180
   onEnterAction:
@@ -80,15 +80,16 @@ MonoBehaviour:
   m_Name: 3e07d2d1-b13c-4264-b942-a0ee62c51ebf
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  portrait: {fileID: 0}
-  title: "\u0434\u0448\u0448\u0433\u043F\u0448\u0434\u0440\u043B"
-  text: 
-  audioClip: {fileID: 0}
-  children: []
+  portrait: {fileID: 21300000, guid: f587e3a5650657b45b150dc2c1d874a5, type: 3}
+  title: "\u041A\u043E\u0445\u0435\u0439\u0440\u0456"
+  text: "\u042F \u0440\u0430\u0434\u0430, \u0449\u043E \u043F\u0440\u0430\u0446\u044E\u0454"
+  audioClip: {fileID: 8300000, guid: 6e4ac956228e64947a966daa2e3364bb, type: 3}
+  children:
+  - 7f04b27c-ca86-41d5-9e47-fd8a82efe2d8
   rect:
     serializedVersion: 2
-    x: 829
-    y: 120
+    x: 741
+    y: 84
     width: 340
     height: 180
   onEnterAction:
@@ -116,7 +117,8 @@ MonoBehaviour:
   - {fileID: 4873025146859462982}
   - {fileID: -412391643335127745}
   - {fileID: 6106857730635184653}
-  - {fileID: -8024082581738986635}
+  - {fileID: 6905028668249003805}
+  - {fileID: -2634913906542648835}
   newNodeOffset: {x: 250, y: 20}
 --- !u!114 &4873025146859462982
 MonoBehaviour:
@@ -139,8 +141,8 @@ MonoBehaviour:
   - 3e07d2d1-b13c-4264-b942-a0ee62c51ebf
   rect:
     serializedVersion: 2
-    x: 445
-    y: 112
+    x: 369
+    y: 83
     width: 340
     height: 180
   onEnterAction:
@@ -182,11 +184,11 @@ MonoBehaviour:
     \u0441\u0445\u043E\u0436\u0435 \u043D\u0435 \u043F\u0440\u0430\u0446\u044E\u0454"
   audioClip: {fileID: 8300000, guid: 397b76b9399632d42853597b143feec1, type: 3}
   children:
-  - 269f5af5-f1ad-4a45-ad77-ac2032d03884
+  - 79ab85f1-097e-4c43-a333-86d4d9f2cc18
   rect:
     serializedVersion: 2
-    x: 463
-    y: 301
+    x: 357
+    y: 274
     width: 340
     height: 180
   onEnterAction:
@@ -204,6 +206,40 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onExitAction:
+    m_PersistentCalls:
+      m_Calls: []
+  condition:
+    and: []
+--- !u!114 &6905028668249003805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0956560e3ce24e9aa77190eeb57786a5, type: 3}
+  m_Name: 79ab85f1-097e-4c43-a333-86d4d9f2cc18
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  portrait: {fileID: 21300000, guid: f587e3a5650657b45b150dc2c1d874a5, type: 3}
+  title: "\u041A\u043E\u0445\u0435\u0439\u0440\u0456"
+  text: "\u0422\u0438 \u0449\u043E, \u0434\u043E\u0432\u0431\u0435\u043B\u044C?!
+    \u0412\u043E\u043D\u043E \u043C\u0430\u0454 \u043F\u0440\u0430\u0446\u044E\u0432\u0430\u0442\u0438!"
+  audioClip: {fileID: 8300000, guid: 0f19c4efb653a914685ad02e97c1d44e, type: 3}
+  children:
+  - 7f04b27c-ca86-41d5-9e47-fd8a82efe2d8
+  rect:
+    serializedVersion: 2
+    x: 745
+    y: 277
+    width: 340
+    height: 180
+  onEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
   onExitAction:
     m_PersistentCalls:
       m_Calls: []
