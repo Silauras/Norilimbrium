@@ -180,8 +180,8 @@ MonoBehaviour:
   isPlayerSpeaking: 1
   portrait: {fileID: 21300000, guid: 862ff212a174d9549ac85ed7915d61cd, type: 3}
   title: "\u0413\u0440\u0430\u0446\u0435\u0446\u044C"
-  text: "\u0422\u0435\u0441\u0442\u0443\u044E, \u0430\u043B\u0435 \u0432\u043E\u043D\u043E
-    \u0441\u0445\u043E\u0436\u0435 \u043D\u0435 \u043F\u0440\u0430\u0446\u044E\u0454"
+  text: "\u0422\u0435\u0441\u0442\u0443\u044E, \u0430\u043B\u0435 \u0432\u043E\u043D\u043E,
+    \u0441\u0445\u043E\u0436\u0435, \u043D\u0435 \u043F\u0440\u0430\u0446\u044E\u0454"
   audioClip: {fileID: 8300000, guid: 397b76b9399632d42853597b143feec1, type: 3}
   children:
   - 79ab85f1-097e-4c43-a333-86d4d9f2cc18

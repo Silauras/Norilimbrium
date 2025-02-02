@@ -127,7 +127,11 @@ namespace Characters
                     else
                     {
                         _moveDirection.y = jumpSpeed;
-                        _staminaComponent.SubtractStamina(staminaForJump);   
+                        if (!godMode )
+                        {
+                            _staminaComponent.SubtractStamina(staminaForJump);
+                        }
+                           
                     }
                 }
                 else
