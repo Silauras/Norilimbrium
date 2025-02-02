@@ -124,40 +124,41 @@ namespace Code.Scripts.Characters.DialogueSystem.Editor
 
         private void ProcessEvents()
         {
-            if (Event.current.type == EventType.MouseDown && !draggingNode)
+            Event e = Event.current;
+
+            switch (e.type)
             {
-                draggingNode = GetNodeAtPoint(Event.current.mousePosition + scrollPosition);
-                if (draggingNode)
+                case EventType.MouseDown when !draggingNode:
                 {
-                    draggingOffset = draggingNode.GetRect().position - Event.current.mousePosition;
-                    Selection.activeObject = draggingNode;
+                    draggingNode = GetNodeAtPoint(e.mousePosition + scrollPosition);
+                    if (draggingNode)
+                    {
+                        draggingOffset = draggingNode.GetRect().position - Event.current.mousePosition;
+                        Selection.activeObject = draggingNode;
+                    }
+                    else
+                    {
+                        draggingCanvas = true;
+                        draggingCanvasOffset = Event.current.mousePosition + scrollPosition;
+                        Selection.activeObject = selectedDialogue;
+                    }
+
+                    break;
                 }
-                else
-                {
-                    draggingCanvas = true;
-                    draggingCanvasOffset = Event.current.mousePosition + scrollPosition;
-                    Selection.activeObject = selectedDialogue;
-                }
+                case EventType.MouseDrag when draggingNode:
+                    draggingNode.SetPosition(Event.current.mousePosition + draggingOffset);
+                    GUI.changed = true;
+                    break;
+                case EventType.MouseDrag when draggingCanvas:
+                    scrollPosition = draggingOffset - Event.current.mousePosition;
+                    break;
+                case EventType.MouseUp when draggingNode:
+                    draggingNode = null;
+                    break;
+                case EventType.MouseUp when draggingCanvas:
+                    draggingCanvas = false;
+                    break;
             }
-            else if (Event.current.type == EventType.MouseDrag && draggingNode)
-            {
-                draggingNode.SetPosition(Event.current.mousePosition + draggingOffset);
-                
-                GUI.changed = true;
-            }
-            else if (Event.current.type == EventType.MouseDrag && draggingCanvas)
-            {
-                scrollPosition = draggingOffset - Event.current.mousePosition;
-            }
-            else if (Event.current.type == EventType.MouseUp && draggingNode)
-            {
-                draggingNode = null;
-            }
-            else if (Event.current.type == EventType.MouseUp && draggingCanvas)
-            {
-                draggingCanvas = false;
-            }
-            
         }
 
         private DialogueNode GetNodeAtPoint(Vector2 point)
@@ -181,8 +182,31 @@ namespace Code.Scripts.Characters.DialogueSystem.Editor
             GUILayout.BeginArea(node.GetRect(), style);
             EditorGUI.BeginChangeCheck();
             
-            node.SetText(EditorGUILayout.TextField(node.GetText()));
-            
+            node.SetTitle(EditorGUILayout.TextField(node.GetTitle(), new GUIStyle()
+            {
+                wordWrap = true,
+                fixedWidth = 200
+            }));
+
+            GUILayout.BeginVertical();
+
+            GUILayout.BeginHorizontal();
+
+            var content = new GUIContent(node.GetPortrait()
+                ? node.GetPortrait().texture
+                : Resources.Load<Texture2D>("basicPortrait"));
+            GUILayout.Box(content, GUILayout.Width(100), GUILayout.Height(100));
+
+            GUILayout.BeginVertical();
+            node.SetText(EditorGUILayout.TextArea(node.GetText(), new GUIStyle()
+            {
+                wordWrap = true,
+                fixedWidth = 200
+            }));
+            GUILayout.EndVertical();
+
+            GUILayout.EndHorizontal();
+
             GUILayout.BeginHorizontal();
 
             if (GUILayout.Button("-"))
@@ -191,13 +215,16 @@ namespace Code.Scripts.Characters.DialogueSystem.Editor
             }
 
             DrawLinkButtons(node);
+
             if (GUILayout.Button("+"))
             {
                 creatingNode = node;
             }
-            
+
             GUILayout.EndHorizontal();
-            
+
+            GUILayout.EndVertical();
+
             GUILayout.EndArea();
         }
 
@@ -232,7 +259,6 @@ namespace Code.Scripts.Characters.DialogueSystem.Editor
                     Undo.RecordObject(selectedDialogue, "Add Dialogue Link");
                     linkingParentNode.AddChild(node.name);
                     linkingParentNode = null;
-
                 }
             }
         }

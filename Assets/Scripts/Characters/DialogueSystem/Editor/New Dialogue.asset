@@ -1,5 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8024082581738986635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0956560e3ce24e9aa77190eeb57786a5, type: 3}
+  m_Name: 269f5af5-f1ad-4a45-ad77-ac2032d03884
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 0
+  portrait: {fileID: 0}
+  title: 
+  text: 
+  audioClip: {fileID: 0}
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 905
+    y: 316
+    width: 250
+    height: 300
+  onEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
+  onExitAction:
+    m_PersistentCalls:
+      m_Calls: []
+  condition:
+    and: []
 --- !u!114 &-3274900758297491081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13,19 +45,26 @@ MonoBehaviour:
   m_Name: 72df6dea-42d5-404b-acac-9391258c5517
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
-  text: Some text!
+  portrait: {fileID: 21300000, guid: f587e3a5650657b45b150dc2c1d874a5, type: 3}
+  title: "\u041A\u043E\u0445\u0435\u0439\u0440\u0456"
+  text: "\u0427\u043E\u0433\u043E \u0442\u0438 \u0442\u0443\u0442 \u0437\u0430\u0431\u0443\u0432?
+    \u0421\u0438\u0441\u0442\u0435\u043C\u0443 \u0442\u0435\u0441\u0442\u0443\u0454\u0448?"
+  audioClip: {fileID: 8300000, guid: c5a1f0df7cd62074996c21de8ebce619, type: 3}
   children:
   - d3ccf78f-b82a-47b0-a215-36e7e625e02a
   - 8c736734-80ab-4f89-ab48-fec4851a875d
-  - 2dbdb915-c4e1-4387-820f-89595de04bb6
   rect:
     serializedVersion: 2
-    x: 40
-    y: 132
-    width: 200
-    height: 100
-  onEnterAction: 
-  onExitAction: 
+    x: -11
+    y: 222
+    width: 340
+    height: 180
+  onEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
+  onExitAction:
+    m_PersistentCalls:
+      m_Calls: []
   condition:
     and: []
 --- !u!114 &-412391643335127745
@@ -41,16 +80,23 @@ MonoBehaviour:
   m_Name: 3e07d2d1-b13c-4264-b942-a0ee62c51ebf
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 0
+  portrait: {fileID: 0}
+  title: "\u0434\u0448\u0448\u0433\u043F\u0448\u0434\u0440\u043B"
   text: 
+  audioClip: {fileID: 0}
   children: []
   rect:
     serializedVersion: 2
-    x: 545
-    y: 174
-    width: 200
-    height: 100
-  onEnterAction: 
-  onExitAction: 
+    x: 829
+    y: 120
+    width: 340
+    height: 180
+  onEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
+  onExitAction:
+    m_PersistentCalls:
+      m_Calls: []
   condition:
     and: []
 --- !u!114 &11400000
@@ -70,7 +116,7 @@ MonoBehaviour:
   - {fileID: 4873025146859462982}
   - {fileID: -412391643335127745}
   - {fileID: 6106857730635184653}
-  - {fileID: 7186191399509751963}
+  - {fileID: -8024082581738986635}
   newNodeOffset: {x: 250, y: 20}
 --- !u!114 &4873025146859462982
 MonoBehaviour:
@@ -85,17 +131,36 @@ MonoBehaviour:
   m_Name: d3ccf78f-b82a-47b0-a215-36e7e625e02a
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 1
-  text: 
+  portrait: {fileID: 21300000, guid: 862ff212a174d9549ac85ed7915d61cd, type: 3}
+  title: "\u0413\u0440\u0430\u0432\u0435\u0446\u044C"
+  text: "\u0422\u0430\u043A! \u041D\u0456\u0431\u0438 \u043F\u0440\u0430\u0446\u044E\u0454!"
+  audioClip: {fileID: 8300000, guid: 2ea8818cca456a94ab25ca3df4e90684, type: 3}
   children:
   - 3e07d2d1-b13c-4264-b942-a0ee62c51ebf
   rect:
     serializedVersion: 2
-    x: 313
-    y: 72
-    width: 200
-    height: 100
-  onEnterAction: 
-  onExitAction: 
+    x: 445
+    y: 112
+    width: 340
+    height: 180
+  onEnterAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onExitAction:
+    m_PersistentCalls:
+      m_Calls: []
   condition:
     and: []
 --- !u!114 &6106857730635184653
@@ -111,40 +176,36 @@ MonoBehaviour:
   m_Name: 8c736734-80ab-4f89-ab48-fec4851a875d
   m_EditorClassIdentifier: 
   isPlayerSpeaking: 1
-  text: Some Other Text
-  children: []
+  portrait: {fileID: 21300000, guid: 862ff212a174d9549ac85ed7915d61cd, type: 3}
+  title: "\u0413\u0440\u0430\u0446\u0435\u0446\u044C"
+  text: "\u0422\u0435\u0441\u0442\u0443\u044E, \u0430\u043B\u0435 \u0432\u043E\u043D\u043E
+    \u0441\u0445\u043E\u0436\u0435 \u043D\u0435 \u043F\u0440\u0430\u0446\u044E\u0454"
+  audioClip: {fileID: 8300000, guid: 397b76b9399632d42853597b143feec1, type: 3}
+  children:
+  - 269f5af5-f1ad-4a45-ad77-ac2032d03884
   rect:
     serializedVersion: 2
-    x: 307
-    y: 201
-    width: 200
-    height: 100
-  onEnterAction: 
-  onExitAction: 
-  condition:
-    and: []
---- !u!114 &7186191399509751963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0956560e3ce24e9aa77190eeb57786a5, type: 3}
-  m_Name: 2dbdb915-c4e1-4387-820f-89595de04bb6
-  m_EditorClassIdentifier: 
-  isPlayerSpeaking: 1
-  text: 
-  children: []
-  rect:
-    serializedVersion: 2
-    x: 290
-    y: 393
-    width: 200
-    height: 100
-  onEnterAction: 
-  onExitAction: 
+    x: 463
+    y: 301
+    width: 340
+    height: 180
+  onEnterAction:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onExitAction:
+    m_PersistentCalls:
+      m_Calls: []
   condition:
     and: []

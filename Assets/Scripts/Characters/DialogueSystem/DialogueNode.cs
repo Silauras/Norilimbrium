@@ -1,23 +1,38 @@
+using System;
 using System.Collections.Generic;
 using Code.Scripts.Utils;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Code.Scripts.Characters.DialogueSystem
 {
     public class DialogueNode : ScriptableObject
     {
         [SerializeField] bool isPlayerSpeaking;
+        [SerializeField] Sprite portrait;
+        [SerializeField] string title;
         [SerializeField] string text;
+        [SerializeField] AudioClip audioClip;
         [SerializeField] List<string> children = new();
-        [SerializeField] Rect rect = new(0, 0, 200, 100);
-        [SerializeField] string onEnterAction;
-        [SerializeField] string onExitAction;
+        [SerializeField] Rect rect = new(0, 0, 340, 180);
+        [SerializeField] UnityEvent onEnterAction;
+        [SerializeField] UnityEvent onExitAction;
         [SerializeField] Condition condition;
 
         public Rect GetRect()
         {
             return rect;
+        }
+
+        public Sprite GetPortrait()
+        {
+            return portrait;
+        }
+
+        public string GetTitle()
+        {
+            return title;
         }
 
         public string GetText()
@@ -35,22 +50,20 @@ namespace Code.Scripts.Characters.DialogueSystem
             return isPlayerSpeaking;
         }
 
-        public string GetOnEnterAction()
-        {
-            return onEnterAction;
-        }
-
-        public string GetOnExitAction()
-        {
-            return onExitAction;
-        }
-
         public bool CheckCondition(IEnumerable<IConditionEvaluator> evaluators)
         {
             return condition.Check(evaluators);
         }
 
 #if UNITY_EDITOR
+
+        public void SetTitle(string newTitle)
+        {
+            if (newTitle == title) return;
+            Undo.RecordObject(this, "Update Dialogue Text");
+            title = newTitle;
+            EditorUtility.SetDirty(this);
+        }
 
         public void SetPosition(Vector2 newPosition)
         {
@@ -61,12 +74,10 @@ namespace Code.Scripts.Characters.DialogueSystem
 
         public void SetText(string newText)
         {
-            if (newText != text)
-            {
-                Undo.RecordObject(this, "Update Dialogue Text");
-                text = newText;
-                EditorUtility.SetDirty(this);
-            }
+            if (newText == text) return;
+            Undo.RecordObject(this, "Update Dialogue Text");
+            text = newText;
+            EditorUtility.SetDirty(this);
         }
 
         public void AddChild(string childID)
