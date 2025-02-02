@@ -3,9 +3,7 @@ using Characters.InventorySystem.Item.Armor;
 using Code.Scripts.Characters.CharacterStatsComponents;
 using Code.Scripts.Characters.InventorySystem;
 using Code.Scripts.Characters.InventorySystem.Spell;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 namespace Characters.InventorySystem
 {
