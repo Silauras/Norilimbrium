@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9b8bd63833cdb246b1104722421f228, type: 3}
   m_Name: Koheyri
   m_EditorClassIdentifier: 
-  Name: "\u041A\u043E\u0445\u0435\u0439\u0440\u0456"
+  Name: Koheyri
   NameColor: {r: 0.25882354, g: 0.43529412, b: 0.34901962, a: 1}
   Portrait: {fileID: 21300000, guid: f587e3a5650657b45b150dc2c1d874a5, type: 3}

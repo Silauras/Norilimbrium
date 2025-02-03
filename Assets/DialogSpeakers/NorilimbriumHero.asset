@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: NorilimbriumHero
   m_EditorClassIdentifier: 
   Name: You
-  NameColor: {r: 0.67058825, g: 0.57254905, b: 0.72156864, a: 1}
+  NameColor: {r: 0.6502491, g: 0.4130651, b: 0.7735849, a: 1}
   Portrait: {fileID: 21300000, guid: 862ff212a174d9549ac85ed7915d61cd, type: 3}
