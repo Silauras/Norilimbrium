@@ -1,96 +1,175 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using TMPro;
+using Ink.Runtime;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    [Space]
-    public Image DialogueSpeakerPortrait;
-    public Image DialogueSkipIndicator;
-    [Space]
-    public TextMeshProUGUI DialogueSpeakerName;
-    public TextMeshProUGUI DialogueText; 
-    [Space]
-    public float TextSpeed;
+    private static DialogueManager instance;
 
-    private DialogueSegment[] dialogueSegments;
-    private int dialogueIndex;
-    private bool canContinue;
+    [Header("Dialogue UI")]
+    [SerializeField] private GameObject dialogueBox;
+    [SerializeField] private TextMeshProUGUI dialogueSpeakerName;
+    [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private Animator portraitAnimator;
+    [Header("Choices UI")]
+    [SerializeField] private GameObject[] choices;
+    private TextMeshProUGUI[] choicesText;
+    [Header("Dialogue settings")]
+    [SerializeField] private float textSpeed;
 
-    // Start
-    void Start()
+    private Story currentStory;
+    public bool dialogueIsPlaying { get; private set; }
+
+    private const string SPEAKER_TAG = "Speaker";
+    private const string PORTRAIT_TAG = "Portrait";
+
+    private void Awake()
     {
-        gameObject.SetActive(false);
+        if (instance is not null)
+        {
+            Debug.LogWarning("Found more than one Dialogue Manager in the scene");
+        }
+        instance = this;
     }
 
-    // Update
-    void Update() 
+    public static DialogueManager GetInstance()
     {
-        if (Input.GetMouseButtonDown(0) && canContinue)
-        {
-            dialogueIndex++;
-            if (dialogueIndex == dialogueSegments.Length) {
-                dialogueSegments = null;
-                gameObject.SetActive(false);
-                return;
-            }
+        return instance;
+    }
 
-            SetStyle(dialogueSegments[dialogueIndex].Speaker);
-            StartCoroutine(PlayDialogue(dialogueSegments[dialogueIndex].Dialogue));
+    private void Start()
+    {
+        dialogueIsPlaying = false;
+        dialogueBox.SetActive(false);
+
+        choicesText = new TextMeshProUGUI[choices.Length];
+        for (int i = 0; i < choices.Length; i++)
+        {
+            choicesText[i] = choices[i].gameObject.GetComponentInChildren<TextMeshProUGUI>();
         }
     }
 
-    public void StartDialogue(DialogueSegment[] newDialogueSegments) {
-        if (newDialogueSegments.Length == 0)
+    private void Update() 
+    {
+        if (!dialogueIsPlaying)
         {
             return;
         }
 
-        // Set
-        dialogueSegments = newDialogueSegments;
-
-        // Prepare
-        dialogueIndex = 0;
-        SetStyle(dialogueSegments[0].Speaker);
-        gameObject.SetActive(true);
-
-        // Start
-        StartCoroutine(PlayDialogue(dialogueSegments[0].Dialogue));
-
-        // Debug
-        Debug.Log("Starting dialog with init: " + dialogueSegments[0].Speaker.Name);
+        if (Input.GetMouseButtonDown(0) && currentStory.currentChoices.Count == 0)
+        {
+            ContinueStory();
+        }
     }
 
-    void SetStyle(DialogueSpeaker speaker) 
+    public void StartDialogue(TextAsset inkJSON)
     {
-        if (speaker.Portrait is null) 
-        {
-            DialogueSpeakerPortrait.color = new Color(0, 0, 0, 0);
-        } 
-        else 
-        {
-            DialogueSpeakerPortrait.sprite = speaker.Portrait;
-            DialogueSpeakerPortrait.color = Color.white;
-        }
+        currentStory = new Story(inkJSON.text);
+        dialogueIsPlaying = true;
+        dialogueBox.SetActive(true);
 
-        DialogueSpeakerName.color = speaker.NameColor;
-        DialogueSpeakerName.SetText(speaker.Name);
+        dialogueSpeakerName.text = "???";
+
+        ContinueStory();
     }
 
-    IEnumerator PlayDialogue(string dialogue) 
+    private IEnumerator ExitDialogue()
     {
-        canContinue = false;
-        DialogueSkipIndicator.enabled = false;
-        DialogueText.SetText(string.Empty);
+        yield return new WaitForSeconds(0.2f);
 
-        for (int i = 0; i < dialogue.Length; i++) 
+        dialogueIsPlaying = false;
+        dialogueBox.SetActive(false);
+        dialogueText.text = string.Empty;
+    }
+
+    private void ContinueStory()
+    {
+        if (currentStory.canContinue)
         {
-            DialogueText.text += dialogue[i];
-            yield return new WaitForSeconds(1f / TextSpeed);
+            dialogueText.text = currentStory.Continue();
+
+            HandleTags(currentStory.currentTags);
+
+            DisplayChoices();
+        }
+        else
+        {
+            StartCoroutine(ExitDialogue());
+        }
+    }
+
+    private void DisplayChoices()
+    {
+        List<Choice> currentChoices = currentStory.currentChoices;
+
+        if (currentChoices.Count > choices.Length)
+        {
+            Debug.LogWarning($"More choices were given than the UI can support. Number of choices is given: {currentChoices.Count}");
         }
 
-        canContinue = true;
-        DialogueSkipIndicator.enabled = true;
+        int index = 0;
+        foreach (Choice choice in currentChoices)
+        {
+            choices[index].gameObject.SetActive(true);
+            choicesText[index].text = choice.text;
+
+            int currentIndex = index;
+            choices[index].GetComponent<Button>().onClick.AddListener(() => MakeChoice(currentIndex));
+
+            index++;
+        }
+
+        for (int i = index; i < choices.Length; i++)
+        {
+            choices[i].GetComponent<Button>().onClick.RemoveAllListeners();
+            choices[i].gameObject.SetActive(false);
+        }
+
+        StartCoroutine(SelectFirstChoice());
+    }
+
+    private void MakeChoice(int choiceIndex)
+    {
+        currentStory.ChooseChoiceIndex(choiceIndex);
+        ContinueStory();
+    }
+
+    private IEnumerator SelectFirstChoice()
+    {
+        EventSystem.current.SetSelectedGameObject(null);
+        yield return new WaitForEndOfFrame();
+        EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
+    }
+
+    private void HandleTags(List<string> tags)
+    {
+        foreach (string tag in tags)
+        {
+            string[] splitTag = tag.Split(':');
+            if (splitTag.Length != 2)
+            {
+                Debug.LogWarning($"Tag could not be appropriately parsed: {tag}");
+            }
+
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
+
+            switch (tagKey)
+            {
+                case SPEAKER_TAG:
+                    dialogueSpeakerName.text = tagValue;
+                    break;
+                case PORTRAIT_TAG:
+                    portraitAnimator.Play(tagValue);
+                    break;
+                default:
+                    Debug.LogWarning($"Tag came in but is not currently being handled: {tag}");
+                    break;
+            }
+        }
     }
 }

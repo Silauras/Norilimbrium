@@ -14,7 +14,7 @@ public class TempColliderTrigger : MonoBehaviour
 
     void Update()
     {
-        if (playerInRange && Input.GetKeyDown(KeyCode.E))
+        if (playerInRange && Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("Player Clicked");
             MethodToCall?.Invoke();
