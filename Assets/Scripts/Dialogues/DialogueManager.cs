@@ -5,6 +5,8 @@ using TMPro;
 using Ink.Runtime;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using System.Linq;
+using System.Threading;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -13,19 +15,27 @@ public class DialogueManager : MonoBehaviour
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialogueBox;
     [SerializeField] private TextMeshProUGUI dialogueSpeakerName;
-    [SerializeField] private TextMeshProUGUI dialogueText;
+    [SerializeField] private GameObject dialogueHistoryContent;
     [SerializeField] private Animator portraitAnimator;
-    [Header("Choices UI")]
-    [SerializeField] private GameObject[] choices;
-    private TextMeshProUGUI[] choicesText;
+    [Header("Prefabs")]
+    [SerializeField] private GameObject dialogueReplicaPrefab;
+    [SerializeField] private GameObject dialogueChoicePanelPrefab;
+    [SerializeField] private GameObject dialogueChoiceButtonPrefab;
+    [SerializeField] private GameObject dialogueContinueIndicatorPrefab;
+    [SerializeField] private GameObject dialogueExitIndicatorPrefab;
     [Header("Dialogue settings")]
     [SerializeField] private float textSpeed;
 
     private Story currentStory;
+    private GameObject currentChoicePanel;
+    private GameObject currentIndicator;
     public bool dialogueIsPlaying { get; private set; }
 
     private const string SPEAKER_TAG = "Speaker";
     private const string PORTRAIT_TAG = "Portrait";
+
+    private const string TRUE_TAG_VALUE = "true";
+    private const string FALSE_TAG_VALUE = "false";
 
     private void Awake()
     {
@@ -45,12 +55,6 @@ public class DialogueManager : MonoBehaviour
     {
         dialogueIsPlaying = false;
         dialogueBox.SetActive(false);
-
-        choicesText = new TextMeshProUGUI[choices.Length];
-        for (int i = 0; i < choices.Length; i++)
-        {
-            choicesText[i] = choices[i].gameObject.GetComponentInChildren<TextMeshProUGUI>();
-        }
     }
 
     private void Update() 
@@ -83,18 +87,25 @@ public class DialogueManager : MonoBehaviour
 
         dialogueIsPlaying = false;
         dialogueBox.SetActive(false);
-        dialogueText.text = string.Empty;
+        foreach (Transform child in dialogueHistoryContent.transform)
+        {
+            Destroy(child.gameObject);
+        }
     }
 
     private void ContinueStory()
     {
         if (currentStory.canContinue)
         {
-            dialogueText.text = currentStory.Continue();
+            string text = currentStory.Continue();
+            SpeakerMeta speaker = HandleTags(currentStory.currentTags);
 
-            HandleTags(currentStory.currentTags);
+            portraitAnimator.Play(speaker.Portrait);
+            dialogueSpeakerName.text = speaker.Name;
 
-            DisplayChoices();
+            DisplayReplica(speaker, text);
+
+            DisplayChoicesOrIndicator();
         }
         else
         {
@@ -102,31 +113,77 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    private void DisplayChoices()
+    private void ContinueStoryAfterChoice()
     {
-        List<Choice> currentChoices = currentStory.currentChoices;
-
-        if (currentChoices.Count > choices.Length)
+        if (currentStory.canContinue)
         {
-            Debug.LogWarning($"More choices were given than the UI can support. Number of choices is given: {currentChoices.Count}");
+            string text = currentStory.Continue();
+            SpeakerMeta speaker = HandleTags(currentStory.currentTags);
+
+            DisplayReplica(speaker, text);
+
+            ContinueStory();
         }
+        else
+        {
+            StartCoroutine(ExitDialogue());
+        }
+    }
+
+    private void DisplayReplica(SpeakerMeta speaker, string text)
+    {
+        GameObject replica = Instantiate(dialogueReplicaPrefab);
+        replica.transform.SetParent(dialogueHistoryContent.transform, false);
+        TextMeshProUGUI replicaText = replica.GetComponent<TextMeshProUGUI>();
+
+        replicaText.text = $"{speaker.Name} — {text}";
+    }
+
+    private void DisplayChoicesOrIndicator()
+    {
+        if (currentChoicePanel is not null)
+        {
+            Destroy(currentChoicePanel);
+            currentChoicePanel = null;
+        }
+
+        if (currentIndicator is not null)
+        {
+            Destroy(currentIndicator);
+            currentIndicator = null;
+        }
+
+        List<Choice> choicesToDisplay = currentStory.currentChoices;
+
+        if (choicesToDisplay.Count == 0)
+        {
+            if (!currentStory.canContinue)
+            {
+                currentIndicator = Instantiate(dialogueExitIndicatorPrefab);
+                currentIndicator.transform.SetParent(dialogueHistoryContent.transform, false);
+            }
+            else
+            {
+                currentIndicator = Instantiate(dialogueContinueIndicatorPrefab);
+                currentIndicator.transform.SetParent(dialogueHistoryContent.transform, false);
+            }
+            return;
+        }
+
+        currentChoicePanel = Instantiate(dialogueChoicePanelPrefab);
+        currentChoicePanel.transform.SetParent(dialogueHistoryContent.transform, false);
 
         int index = 0;
-        foreach (Choice choice in currentChoices)
+        foreach (Choice choiceToDisplay in choicesToDisplay)
         {
-            choices[index].gameObject.SetActive(true);
-            choicesText[index].text = choice.text;
-
             int currentIndex = index;
-            choices[index].GetComponent<Button>().onClick.AddListener(() => MakeChoice(currentIndex));
+
+            GameObject newChoice = Instantiate(dialogueChoiceButtonPrefab);
+            newChoice.GetComponent<Button>().onClick.AddListener(() => MakeChoice(currentIndex));
+            newChoice.transform.SetParent(currentChoicePanel.transform, false);
+            newChoice.GetComponentInChildren<TextMeshProUGUI>().text = choiceToDisplay.text;
 
             index++;
-        }
-
-        for (int i = index; i < choices.Length; i++)
-        {
-            choices[i].GetComponent<Button>().onClick.RemoveAllListeners();
-            choices[i].gameObject.SetActive(false);
         }
 
         StartCoroutine(SelectFirstChoice());
@@ -135,24 +192,34 @@ public class DialogueManager : MonoBehaviour
     private void MakeChoice(int choiceIndex)
     {
         currentStory.ChooseChoiceIndex(choiceIndex);
-        ContinueStory();
+        ContinueStoryAfterChoice();
     }
 
     private IEnumerator SelectFirstChoice()
     {
         EventSystem.current.SetSelectedGameObject(null);
         yield return new WaitForEndOfFrame();
-        EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
+        Button[] choiceList = currentChoicePanel.GetComponentsInChildren<Button>();
+        EventSystem.current.SetSelectedGameObject(choiceList[0].gameObject);
     }
 
-    private void HandleTags(List<string> tags)
+    // returns speaker name
+    private SpeakerMeta HandleTags(List<string> tags)
     {
+        SpeakerMeta speaker = new SpeakerMeta();
+
         foreach (string tag in tags)
         {
             string[] splitTag = tag.Split(':');
-            if (splitTag.Length != 2)
+
+            if (splitTag.Length > 2)
             {
                 Debug.LogWarning($"Tag could not be appropriately parsed: {tag}");
+            }
+
+            if (splitTag.Length == 1)
+            {
+                splitTag = splitTag.Append(TRUE_TAG_VALUE).ToArray();
             }
 
             string tagKey = splitTag[0].Trim();
@@ -161,15 +228,17 @@ public class DialogueManager : MonoBehaviour
             switch (tagKey)
             {
                 case SPEAKER_TAG:
-                    dialogueSpeakerName.text = tagValue;
+                    speaker.Name = tagValue;
                     break;
                 case PORTRAIT_TAG:
-                    portraitAnimator.Play(tagValue);
+                    speaker.Portrait = tagValue;
                     break;
                 default:
                     Debug.LogWarning($"Tag came in but is not currently being handled: {tag}");
                     break;
             }
         }
+
+        return speaker;
     }
 }
