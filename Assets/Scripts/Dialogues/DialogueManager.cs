@@ -23,16 +23,18 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject dialogueChoiceButtonPrefab;
     [SerializeField] private GameObject dialogueContinueIndicatorPrefab;
     [SerializeField] private GameObject dialogueExitIndicatorPrefab;
-    [Header("Dialogue settings")]
-    [SerializeField] private float textSpeed;
 
     private Story currentStory;
     private GameObject currentChoicePanel;
     private GameObject currentIndicator;
+    private AudioSource audioSource;
     public bool dialogueIsPlaying { get; private set; }
+
+    private const string CLIP_PATH_TEMPL = "Audio/Dialogues/{0}";
 
     private const string SPEAKER_TAG = "Speaker";
     private const string PORTRAIT_TAG = "Portrait";
+    private const string SOUND_TAG = "Sound";
 
     private const string TRUE_TAG_VALUE = "true";
     private const string FALSE_TAG_VALUE = "false";
@@ -44,6 +46,8 @@ public class DialogueManager : MonoBehaviour
             Debug.LogWarning("Found more than one Dialogue Manager in the scene");
         }
         instance = this;
+
+        audioSource = gameObject.AddComponent<AudioSource>();
     }
 
     public static DialogueManager GetInstance()
@@ -137,6 +141,14 @@ public class DialogueManager : MonoBehaviour
         TextMeshProUGUI replicaText = replica.GetComponent<TextMeshProUGUI>();
 
         replicaText.text = $"{speaker.Name} — {text}";
+
+        audioSource.Stop();
+        if (speaker.Sound is not null)
+        {
+            string clipPath = string.Format(CLIP_PATH_TEMPL, speaker.Sound);
+            AudioClip clipToShot = (AudioClip)Resources.Load(clipPath, typeof(AudioClip));
+            audioSource.PlayOneShot(clipToShot);
+        }
     }
 
     private void DisplayChoicesOrIndicator()
@@ -203,7 +215,6 @@ public class DialogueManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(choiceList[0].gameObject);
     }
 
-    // returns speaker name
     private SpeakerMeta HandleTags(List<string> tags)
     {
         SpeakerMeta speaker = new SpeakerMeta();
@@ -232,6 +243,9 @@ public class DialogueManager : MonoBehaviour
                     break;
                 case PORTRAIT_TAG:
                     speaker.Portrait = tagValue;
+                    break;
+                case SOUND_TAG:
+                    speaker.Sound = tagValue;
                     break;
                 default:
                     Debug.LogWarning($"Tag came in but is not currently being handled: {tag}");
