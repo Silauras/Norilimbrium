@@ -18,7 +18,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject dialogueHistoryContent;
     [SerializeField] private Animator portraitAnimator;
     [Header("Prefabs")]
-    [SerializeField] private GameObject dialogueReplicaPrefab;
+    [SerializeField] private GameObject dialogueReplicaBoxPrefab;
     [SerializeField] private GameObject dialogueChoicePanelPrefab;
     [SerializeField] private GameObject dialogueChoiceButtonPrefab;
     [SerializeField] private GameObject dialogueContinueIndicatorPrefab;
@@ -30,7 +30,7 @@ public class DialogueManager : MonoBehaviour
     private AudioSource audioSource;
     public bool dialogueIsPlaying { get; private set; }
 
-    private const string CLIP_PATH_TEMPL = "Voice/Characters/{0}";
+    private const string CLIP_PATH_TEMPLATE = "Voice/Characters/{0}";
 
     private const string SPEAKER_TAG = "Speaker";
     private const string PORTRAIT_TAG = "Portrait";
@@ -140,24 +140,19 @@ public class DialogueManager : MonoBehaviour
 
     private void DisplayReplica(SpeakerMeta speaker, string text)
     {
-        GameObject replica = Instantiate(dialogueReplicaPrefab);
+        GameObject replica = Instantiate(dialogueReplicaBoxPrefab);
         replica.transform.SetParent(dialogueHistoryContent.transform, false);
-        TextMeshProUGUI replicaText = replica.GetComponent<TextMeshProUGUI>();
+        TextMeshProUGUI[] replicaTMPs = replica.GetComponentsInChildren<TextMeshProUGUI>();
+        TextMeshProUGUI replicaSpeaker = replicaTMPs[0];
+        TextMeshProUGUI replicaText = replicaTMPs[1];
 
-        switch (speaker.Name)
-        {
-            case "":
-                replicaText.SetText($"— {text}");
-                break;
-            default:
-                replicaText.SetText($"{speaker.Name} — {text}");
-                break;
-        }
+        replicaSpeaker.SetText(speaker.Name);
+        replicaText.SetText(text);
 
         audioSource.Stop();
         if (speaker.Voice is not null)
         {
-            string clipPath = string.Format(CLIP_PATH_TEMPL, speaker.Voice);
+            string clipPath = string.Format(CLIP_PATH_TEMPLATE, speaker.Voice);
             AudioClip clipToShot = (AudioClip)Resources.Load(clipPath, typeof(AudioClip));
             audioSource.PlayOneShot(clipToShot);
         }
