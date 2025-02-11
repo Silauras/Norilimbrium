@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: norilimbrium_hero_neutral
+  m_Name: hero_neutral
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0

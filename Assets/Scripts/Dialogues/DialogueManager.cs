@@ -30,11 +30,11 @@ public class DialogueManager : MonoBehaviour
     private AudioSource audioSource;
     public bool dialogueIsPlaying { get; private set; }
 
-    private const string CLIP_PATH_TEMPL = "Audio/Dialogues/{0}";
+    private const string CLIP_PATH_TEMPL = "Voice/Characters/{0}";
 
     private const string SPEAKER_TAG = "Speaker";
     private const string PORTRAIT_TAG = "Portrait";
-    private const string SOUND_TAG = "Sound";
+    private const string VOICE_TAG = "Voice";
 
     private const string TRUE_TAG_VALUE = "true";
     private const string FALSE_TAG_VALUE = "false";
@@ -104,8 +104,12 @@ public class DialogueManager : MonoBehaviour
             string text = currentStory.Continue();
             SpeakerMeta speaker = HandleTags(currentStory.currentTags);
 
+            // Show portrait and name of speaker
             portraitAnimator.Play(speaker.Portrait);
-            dialogueSpeakerName.text = speaker.Name;
+            if (speaker.Name != string.Empty)
+            {
+                dialogueSpeakerName.text = speaker.Name;
+            }
 
             DisplayReplica(speaker, text);
 
@@ -140,12 +144,20 @@ public class DialogueManager : MonoBehaviour
         replica.transform.SetParent(dialogueHistoryContent.transform, false);
         TextMeshProUGUI replicaText = replica.GetComponent<TextMeshProUGUI>();
 
-        replicaText.text = $"{speaker.Name} — {text}";
+        switch (speaker.Name)
+        {
+            case "":
+                replicaText.SetText($"— {text}");
+                break;
+            default:
+                replicaText.SetText($"{speaker.Name} — {text}");
+                break;
+        }
 
         audioSource.Stop();
-        if (speaker.Sound is not null)
+        if (speaker.Voice is not null)
         {
-            string clipPath = string.Format(CLIP_PATH_TEMPL, speaker.Sound);
+            string clipPath = string.Format(CLIP_PATH_TEMPL, speaker.Voice);
             AudioClip clipToShot = (AudioClip)Resources.Load(clipPath, typeof(AudioClip));
             audioSource.PlayOneShot(clipToShot);
         }
@@ -244,8 +256,8 @@ public class DialogueManager : MonoBehaviour
                 case PORTRAIT_TAG:
                     speaker.Portrait = tagValue;
                     break;
-                case SOUND_TAG:
-                    speaker.Sound = tagValue;
+                case VOICE_TAG:
+                    speaker.Voice = tagValue;
                     break;
                 default:
                     Debug.LogWarning($"Tag came in but is not currently being handled: {tag}");
