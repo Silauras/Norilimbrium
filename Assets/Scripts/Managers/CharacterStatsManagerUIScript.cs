@@ -1,9 +1,8 @@
 using Code.Scripts.Characters.CharacterStatsComponents;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-namespace Code.Scripts
+namespace Managers
 {
     public class CharacterStatsManagerUIScript : MonoBehaviour
     {
@@ -50,13 +49,13 @@ namespace Code.Scripts
             UpdateAllBars();
             SetHealth(healthComponent.currentHeath);
             SetMaxHealth(healthComponent.maxHeath);
-            
+
             SetMaxStamina(staminaComponent.maxStamina);
             SetStamina(staminaComponent.currentStamina);
-            
+
             SetMaxMana(manaComponent.maxMana);
             SetMana(manaComponent.currentMana);
-            
+
             SetMaxResonance(resonanceComponent.maxResonance);
             SetResonance(resonanceComponent.currentResonance);
         }
@@ -65,23 +64,23 @@ namespace Code.Scripts
         {
             SetHealth(healthComponent.currentHeath);
             SetMaxHealth(healthComponent.maxHeath);
-            
+
             SetMaxStamina(staminaComponent.maxStamina);
             SetStamina(staminaComponent.currentStamina);
-            
+
             SetMaxMana(manaComponent.maxMana);
             SetMana(manaComponent.currentMana);
-            
+
             SetMaxResonance(resonanceComponent.maxResonance);
             SetResonance(resonanceComponent.currentResonance);
-            
+
         }
 
         public void SetHealth(float health)
         {
             if (Mathf.Approximately(currentHealth, health))
             {
-               return; 
+               return;
             }
             currentHealth = Mathf.Clamp(health, 0, maxHealth);
             UpdateHealthBar();

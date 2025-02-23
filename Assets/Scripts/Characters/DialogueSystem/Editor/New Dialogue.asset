@@ -119,7 +119,40 @@ MonoBehaviour:
   - {fileID: 6106857730635184653}
   - {fileID: 6905028668249003805}
   - {fileID: -2634913906542648835}
+  - {fileID: 3868111425611330697}
   newNodeOffset: {x: 250, y: 20}
+--- !u!114 &3868111425611330697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0956560e3ce24e9aa77190eeb57786a5, type: 3}
+  m_Name: 607c9cb3-6819-4897-a39b-9fe6601e86f2
+  m_EditorClassIdentifier: 
+  isPlayerSpeaking: 1
+  portrait: {fileID: 21300000, guid: 862ff212a174d9549ac85ed7915d61cd, type: 3}
+  title: Name
+  text: 
+  audioClip: {fileID: 0}
+  children: []
+  rect:
+    serializedVersion: 2
+    x: 1110
+    y: 461
+    width: 340
+    height: 180
+  onEnterAction:
+    m_PersistentCalls:
+      m_Calls: []
+  onExitAction:
+    m_PersistentCalls:
+      m_Calls: []
+  condition:
+    and: []
 --- !u!114 &4873025146859462982
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,9 +264,10 @@ MonoBehaviour:
   audioClip: {fileID: 8300000, guid: 0f19c4efb653a914685ad02e97c1d44e, type: 3}
   children:
   - 7f04b27c-ca86-41d5-9e47-fd8a82efe2d8
+  - 607c9cb3-6819-4897-a39b-9fe6601e86f2
   rect:
     serializedVersion: 2
-    x: 745
+    x: 746
     y: 277
     width: 340
     height: 180

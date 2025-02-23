@@ -1,9 +1,8 @@
 using System;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-namespace Code.Scripts.Managers
+namespace Managers
 {
     public class GameStateManager : MonoBehaviour
     {
@@ -77,7 +76,7 @@ namespace Code.Scripts.Managers
 
             if (_backGroundMaterial)
             {
-                _backGroundMaterial.SetFloat(UnscaledTime, UnityEngine.Time.unscaledTime);   
+                _backGroundMaterial.SetFloat(UnscaledTime, UnityEngine.Time.unscaledTime);
             }
         }
 
