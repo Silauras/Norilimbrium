@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 3760456762874238560}
   - component: {fileID: 6740025166098231379}
   - component: {fileID: 1329414149709430412}
-  - component: {fileID: 3603212898007876865}
   m_Layer: 0
-  m_Name: DirtWallSpell
+  m_Name: WallSpell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,7 +66,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 47b5c0ddb80cf714a81b6647bafbd1cd, type: 2}
+  - {fileID: 2100000, guid: c39161d53ab55d541a88af0054569c5b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,8 +107,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.43148428, y: 1.9464502, z: 2.9911969}
-  m_Center: {x: -0.016144067, y: 1.0520866, z: 0.003970504}
+  m_Size: {x: 2.979124, y: 1.9464502, z: 0.4343564}
+  m_Center: {x: 0.04353589, y: 1.0520866, z: -0.018846184}
 --- !u!54 &1329414149709430412
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -137,48 +136,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 122
   m_CollisionDetection: 0
---- !u!114 &3603212898007876865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4448792582384480186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcc2809587914974880a2f9d3c3bdc7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spellTypeInput:
-  - rid: 1285268034208923729
-  - rid: 1285268034208923730
-  - rid: 1285268034208923731
-  maxSize: 1.25
-  minSize: 1
-  startSize: 0.85
-  growthSpeed: 2
-  shrinkSpeed: 0.5
-  trembleIntensity: 0.05
-  trembleSpeed: 10
-  currentState: 3
-  references:
-    version: 2
-    RefIds:
-    - rid: 1285268034208923729
-      type: {class: HoldReleaseInput, ns: Spells, asm: Assembly-CSharp}
-      data:
-        durationInSeconds: 2
-        accuracyInSecondsRequired: 0.5
-        inputHoldReleaseInputType: 0
-    - rid: 1285268034208923730
-      type: {class: HoldReleaseInput, ns: Spells, asm: Assembly-CSharp}
-      data:
-        durationInSeconds: 0.5
-        accuracyInSecondsRequired: 0.4
-        inputHoldReleaseInputType: 1
-    - rid: 1285268034208923731
-      type: {class: HoldReleaseInput, ns: Spells, asm: Assembly-CSharp}
-      data:
-        durationInSeconds: 1
-        accuracyInSecondsRequired: 0.5
-        inputHoldReleaseInputType: 0

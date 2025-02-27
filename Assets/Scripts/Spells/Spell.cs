@@ -1,45 +1,110 @@
+using Code.Scripts.Characters.InventorySystem.Spell;
 using UnityEngine;
 
 namespace Spells
 {
-    public abstract class Spell : MonoBehaviour
+    [CreateAssetMenu(fileName = "NewElement", menuName = "Spell System/Element")]
+    public class ElementData : ScriptableObject
     {
-        [SerializeReference]
-        public SpellTypeInput[] spellTypeInput;
+        public string elementName;
+        public Color baseColor;
+        public Material baseMaterial;
+        public Material emissionMaterial;
+        public Texture specialTexture;
+        public GameObject particleEffectPrefab;
+        public string elementDescription;
+        public float baseDamageMultiplier;
+        public float manaCostModifier;
+        public float resonanceCostModifier;
+        public bool isUnique;
 
-        public abstract void ChangeState(int inputIndex);
-        public abstract void FailCasting();
+        public ElementType elementType;
+        public ElementType[] incompatibleElements;
+        public SpellForm[] compatibleForms;
     }
 
-    [System.Serializable]
-    public abstract class SpellTypeInput
+    public enum ElementType
     {
+        Fire,
+        Water,
+        Air,
+        Earth,
+        Light,
+        Darkness,
+        Unique
     }
 
-    [System.Serializable]
-    public class RotationWheelSpeedInput : SpellTypeInput
+    [CreateAssetMenu(fileName = "New Spell Form", menuName = "Spell System/Spell Form")]
+    public class SpellFormData : ScriptableObject
     {
-        public float durationForRotationWheel;
-        public float requiredSpeed;
+        public SpellForm type;
+        public GameObject prefab;
     }
 
-    [System.Serializable]
-    public class RhythmClickerInput : SpellTypeInput
+    public enum SpellForm
     {
-        public int beatsCount = 5;
-        public float timeBetweenBeats = 1f;
+        Projectile,
+        Beam,
+        Explosion,
+        Wall,
+        Aura,
+        Zone,
+        Wave,
+        Chain,
+        Summon,
+        SelfBuff,
+        Debuff,
+        Trap,
+        Unique
     }
 
-    [System.Serializable]
-    public class HoldReleaseInput : SpellTypeInput
+    public enum SpellModifierType
     {
-        public float durationInSeconds = 2f;
-        public float accuracyInSecondsRequired = 0.5f;
-        public HoldReleaseInputType inputHoldReleaseInputType = HoldReleaseInputType.Hold;
-        public enum HoldReleaseInputType
+        Speed, // Ускорение заклинания
+        Power, // Усиление урона/эффекта
+        Size, // Увеличение размеров заклинания
+        Duration, // Длительность эффекта
+        Count, // Количество создаваемых объектов (мультиспавн)
+        Ricochet, // Рикошет
+        Homing, // Самонаведение
+        Penetration, // Пробивание целей
+        Split, // Разделение на несколько снарядов
+        Bounce, // Отскакивание от поверхностей
+        Pierce, // Проникающее сквозь несколько врагов
+        Spread, // Расширение зоны поражения
+        Chargeable, // Возможность накопления силы перед выпуском
+        Delayed, // Задержка перед срабатыванием
+        GravityAffected, // Подверженность гравитации
+        Linger, // Задержка эффекта в области
+        Clone, // Создание дополнительной копии заклинания
+        Unique, // Уникальный модификатор
+    }
+
+    [CreateAssetMenu(fileName = "New Spell Data", menuName = "Spell System/Spell Modifier")]
+    public class SpellModifier : ScriptableObject
+    {
+        public SpellModifierType type;
+        public int value;
+        public int minValue;
+        public int maxValue;
+        public SpellForm[] compatibleForms;
+
+        public SpellModifier(SpellModifierType type, int value, int minValue, int maxValue)
         {
-            Hold, Release
+            this.type = type;
+            this.value = Mathf.Clamp(value, minValue, maxValue);
+            this.minValue = minValue;
+            this.maxValue = maxValue;
         }
+    }
 
+    [CreateAssetMenu(fileName = "New Spell Data", menuName = "Spell System/Spell Data")]
+    public class SpellData : ScriptableObject
+    {
+        public ElementData element;
+        public SpellFormData form;
+        public SpellModifier[] modifiers;
+        [SerializeReference]
+        public SpellData nextSpellToCast;
     }
 }

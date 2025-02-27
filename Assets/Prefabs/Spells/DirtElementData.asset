@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7257c1815c94e5b91d2ac29371f0425, type: 3}
+  m_Name: DirtElementData
+  m_EditorClassIdentifier: 
+  elementName: 
+  baseColor: {r: 0.4528302, g: 0.25865805, b: 0.1003916, a: 0}
+  baseMaterial: {fileID: 2100000, guid: 47b5c0ddb80cf714a81b6647bafbd1cd, type: 2}
+  emissionMaterial: {fileID: 0}
+  specialTexture: {fileID: 0}
+  particleEffectPrefab: {fileID: 0}
+  elementDescription: 
+  baseDamageMultiplier: 4
+  manaCostModifier: 0
+  resonanceCostModifier: 0
+  isUnique: 0
+  elementType: 0
+  incompatibleElements: 04000000050000000600000002000000
+  compatibleForms: 000000000300000005000000060000000700000008000000090000000a0000000b000000
