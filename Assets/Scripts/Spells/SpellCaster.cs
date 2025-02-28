@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Spells;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 
 public class SpellCaster : MonoBehaviour
 {
+    private static Dictionary<SpellData, GameObject> _readySpells = new Dictionary<SpellData, GameObject>();
     public SpellData FailCastSpell;
     public Transform castPoint; // Точка старта заклинания
 
@@ -37,10 +39,25 @@ public class SpellCaster : MonoBehaviour
         switch (spell.form.type)
         {
             case SpellForm.Wall:
-                Vector3 direction = end - start;
+                var direction = end - start;
                 direction.Normalize();
-                Quaternion rotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-                spellObject = Instantiate(spell.form.prefab, end, rotation);
+                var rotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+                if (_readySpells.TryGetValue(spell, out var readySpell))
+                {
+                    spellObject = readySpell;
+                }
+                else
+                {
+                    spellObject = new GameObject("Spell Object Wall");
+                    var meshFilter = spellObject.AddComponent<MeshFilter>();
+                    meshFilter.mesh = Resources.Load<Mesh>("Meshes/DirtWall");
+                    var meshRenderer = spellObject.AddComponent<MeshRenderer>();
+                    meshRenderer.material = Resources.Load<Material>("Materials/Dirt_01");
+                    spellObject.AddComponent<WallScript>();
+                    _readySpells.Add(spell, spellObject);
+                }
+
+                spellObject = Instantiate(spellObject, end, rotation);
                 break;
             default:
                 Debug.LogWarning("Форма заклинания не реализована: " + spell.form);

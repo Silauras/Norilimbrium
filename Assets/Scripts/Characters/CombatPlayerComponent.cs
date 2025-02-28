@@ -8,7 +8,7 @@ public class CombatPlayerComponent : MonoBehaviour
     public float sphereRadius = 0.1f;
     public float maxRaycastDistance = 10f;
     public SpellData spellPrefab;
-    private SpellCaster _spellCaster;
+    public SpellCaster _spellCaster;
     void Start()
     {
         _spellCaster = GetComponent<SpellCaster>();
@@ -42,10 +42,6 @@ public class CombatPlayerComponent : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1) && hasHit)
         {
-            Debug.Log(spellPrefab.name);
-            Debug.Log(_spellCaster.ToString());
-            Debug.Log(transform.position);
-            Debug.Log(spherePosition);
             _spellCaster.CastSpell(spellPrefab, transform.position, spherePosition);
         }
     }
