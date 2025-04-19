@@ -1,14 +1,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using Spells;
+using Spells.Scripts;
+using UnityEditor;
 using UnityEngine;
 
 
 public class SpellCaster : MonoBehaviour
 {
-    private static Dictionary<SpellData, GameObject> _readySpells = new Dictionary<SpellData, GameObject>();
     public SpellData FailCastSpell;
-    public Transform castPoint; // Точка старта заклинания
+    public Transform castPoint;
+
+
 
     public void CastSpell(SpellData spell, Vector3 start, Vector3 end)
     {
@@ -35,51 +38,59 @@ public class SpellCaster : MonoBehaviour
             CastSpell(FailCastSpell, start, end);
         }
 
-        GameObject spellObject = null;
+        GameObject spellObject = spell.form.prefab;
         switch (spell.form.type)
         {
+            case SpellForm.Projectile:
+                var projectileScript = spellObject.GetComponent<ProjectileScript>();
+                projectileScript.modifiers = spell.modifiers;
+                projectileScript.targetPosition = end;
+                spellObject = Instantiate(spellObject, start, Quaternion.FromToRotation(start, end));
+                break;
             case SpellForm.Wall:
                 var direction = end - start;
                 direction.Normalize();
                 var rotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-                if (_readySpells.TryGetValue(spell, out var readySpell))
-                {
-                    spellObject = readySpell;
-                }
-                else
+                if (spellObject is null)
                 {
                     spellObject = new GameObject("Spell Object Wall");
                     var meshFilter = spellObject.AddComponent<MeshFilter>();
                     meshFilter.mesh = Resources.Load<Mesh>("Meshes/DirtWall");
                     var meshRenderer = spellObject.AddComponent<MeshRenderer>();
                     meshRenderer.material = Resources.Load<Material>("Materials/Dirt_01");
+                    var meshCollider = spellObject.AddComponent<MeshCollider>();
+                    meshCollider.convex = true;
+                    meshCollider.sharedMesh = meshFilter.mesh;
+                    var rigidBody = spellObject.AddComponent<Rigidbody>();
+                    rigidBody.useGravity = true;
+                    rigidBody.constraints = (RigidbodyConstraints)122;
+                    //RigidbodyConstraints.FreezeRotation | FreezePositionX | FreezePositionZ
                     spellObject.AddComponent<WallScript>();
-                    _readySpells.Add(spell, spellObject);
                 }
 
-                spellObject = Instantiate(spellObject, end, rotation);
+                spellObject = Instantiate(GameObjectUtility.DuplicateGameObject(spellObject), end, rotation);
                 break;
             default:
                 Debug.LogWarning("Форма заклинания не реализована: " + spell.form);
                 break;
         }
 
-        if (spellObject is not null)
-        {
-            foreach (var modifier in spell.modifiers)
-            {
-                switch (modifier.type)
-                {
-                    case SpellModifierType.Size:
-
-                        spellObject.transform.localScale *= modifier.value * .01f;
-                        break;
-                    default:
-                        Debug.LogWarning("This modifier is not yet supported");
-                        break;
-                }
-            }
-        }
+        // if (spellObject is not null)
+        // {
+        //     foreach (var modifier in spell.modifiers)
+        //     {
+        //         switch (modifier.type)
+        //         {
+        //             case SpellModifierType.Size:
+        //
+        //                 spellObject.transform.localScale *= modifier.value * .01f;
+        //                 break;
+        //             default:
+        //                 Debug.LogWarning("This modifier is not yet supported");
+        //                 break;
+        //         }
+        //     }
+        // }
     }
 
     public bool isItPossibleToCast(ElementData element, SpellForm formType, SpellModifier[] modifiers = null)
@@ -90,7 +101,7 @@ public class SpellCaster : MonoBehaviour
             return false;
         }
 
-        if (!element.compatibleForms.Contains(formType))
+        if (!SpellCompatibilityMatrix.IsFormCompatibleWithElement(element.elementType, formType))
         {
             Debug.LogWarning("Spell with incompatible form is present");
             return false;

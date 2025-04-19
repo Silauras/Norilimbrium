@@ -7,8 +7,9 @@ public class CombatPlayerComponent : MonoBehaviour
     public Camera camera;
     public float sphereRadius = 0.1f;
     public float maxRaycastDistance = 10f;
-    public SpellData spellPrefab;
+    public SpellForm Spell;
     public SpellCaster _spellCaster;
+
     void Start()
     {
         _spellCaster = GetComponent<SpellCaster>();
@@ -40,12 +41,22 @@ public class CombatPlayerComponent : MonoBehaviour
 
         Debug.DrawRay(ray.origin, ray.direction * maxRaycastDistance, Color.green);
 
-        if (Input.GetMouseButtonDown(1) && hasHit)
+        SpellData spellData = SpellBuilder.GetInstance().newSpell().Element(ElementType.Fire).Form(Spell)
+            .createAndValidateSpellData();
+        if (Input.GetMouseButtonDown(1))
         {
-            _spellCaster.CastSpell(spellPrefab, transform.position, spherePosition);
+            if (Spell == SpellForm.Projectile)
+            {
+                _spellCaster.CastSpell(spellData, transform.position + ray.direction * 1.5f,
+                    transform.position + ray.direction * maxRaycastDistance);
+            }
+
+            else if (hasHit)
+            {
+                _spellCaster.CastSpell(spellData, transform.position, spherePosition);
+            }
         }
     }
-
 
 
     void OnDrawGizmos()

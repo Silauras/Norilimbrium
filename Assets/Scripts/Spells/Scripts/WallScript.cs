@@ -1,18 +1,18 @@
 using UnityEngine;
 
-namespace Spells
+namespace Spells.Scripts
 {
     public class WallScript : MonoBehaviour
     {
-        public float baseLifeTime = 5f; // Базовое время до уничтожения объекта
-        public bool growFlag = true; // Флаг для роста объекта
-        public bool shakeFlag = true; // Флаг для тряски
-        public bool shrinkFlag = true; // Флаг для уменьшения по высоте
+        public float baseLifeTime = 0.2f;
+        public bool growFlag = true;
+        public bool shakeFlag = true;
+        public bool shrinkFlag = true;
 
-        public float growDuration = 1f; // Время роста
-        public float shakeIntensity = 0.1f; // Интенсивность тряски
-        public float shakeDuration = 0.5f; // Длительность тряски
-        public float shrinkAmount = 0.2f; // Насколько уменьшить высоту
+        public float growDuration = 1f;
+        public float shakeIntensity = 0.01f;
+        public float shakeDuration = 8.8f;
+        public float shrinkAmount = 0.2f;
 
         private Vector3 _originalScale;
 
@@ -32,7 +32,6 @@ namespace Spells
 
         private System.Collections.IEnumerator GrowAndShake()
         {
-            // Рост объекта
             float elapsedTime = 0;
             Vector3 startingScale = transform.localScale / 8f;
 
@@ -45,7 +44,6 @@ namespace Spells
 
             transform.localScale = _originalScale;
 
-            // Тряска и уменьшение по высоте
             if (shakeFlag || shrinkFlag)
             {
                 Vector3 originalPosition = transform.position;
@@ -73,7 +71,6 @@ namespace Spells
                 transform.position = originalPosition;
             }
 
-            // Уничтожение объекта после базового времени
             yield return new WaitForSeconds(baseLifeTime);
             Destroy(gameObject);
         }

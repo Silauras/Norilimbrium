@@ -4,5 +4,6 @@ public enum DamageType
     Cutting,
     Piercing,
     Chopping,
-    Chushing
+    Chushing,
+    Fire
 }

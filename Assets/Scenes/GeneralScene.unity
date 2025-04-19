@@ -9276,6 +9276,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 7c6f5975be71322469233ae7dd6370d3, type: 2}
     - target: {fileID: 7172575468225135880, guid: 54267a6139d799149b4da9c851692766, type: 3}
+      propertyPath: _spellCaster
+      value: 
+      objectReference: {fileID: 556465550}
+    - target: {fileID: 7172575468225135880, guid: 54267a6139d799149b4da9c851692766, type: 3}
+      propertyPath: maxRaycastDistance
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 7172575468225135880, guid: 54267a6139d799149b4da9c851692766, type: 3}
       propertyPath: dirtWallSpellPrefab
       value: 
       objectReference: {fileID: 4448792582384480186, guid: 9c86250c6d7f54040b7e911d2b7b47b2, type: 3}
